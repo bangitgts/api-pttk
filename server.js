@@ -10,10 +10,10 @@ const RoomModel = require("./models/room");
 var jwt = require("jsonwebtoken");
 var cookieParser = require("cookie-parser");
 const checkToken = require("./auth/checkToken");
-var cors = require('cors')
+var cors = require("cors");
 app.use(cookieParser());
-app.use(cors())
-    // parse application/x-www-form-urlencoded
+app.use(cors());
+// parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }));
 
 // parse application/json
@@ -30,6 +30,19 @@ app.get("/add-course", (req, res, next) => {
         .then((data) => res.json(data))
         .catch((err) => res.json(err));
 });
+
+app.put("/change-dadangki", (req, res, next) => {
+    var nameCourse = req.body.nameCourse;
+    var daDangki = req.body.daDangki;
+    CourseModel.update({
+            nameCourse: nameCourse
+        }, {
+            daDangki: daDangki
+        })
+        .then((data) => res.json(data))
+        .catch((err) => console.log(err))
+});
+
 app.get("/add-room", (req, res, next) => {
     RoomModel.find({})
         .then((data) => res.json(data))
@@ -58,6 +71,7 @@ app.post("/add-course", (req, res, next) => {
     var nameCourse = req.body.nameCourse;
     var schedule = req.body.schedule;
     var during = req.body.during;
+    var amount = amount;
     CourseModel.findOne({ nameCourse: nameCourse })
         .then((data) => {
             if (data) {
@@ -67,6 +81,7 @@ app.post("/add-course", (req, res, next) => {
                     nameCourse: nameCourse,
                     schedule: schedule,
                     during: during,
+                    amount: amount,
                 });
             }
         })

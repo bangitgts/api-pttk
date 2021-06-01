@@ -8,7 +8,7 @@ const AccountSchema = new Schema({
     nameCourse: String,
     schedule: String,
     during: String,
-    isActive: String
+    amount: String
 }, {
     collection: "course",
 });
