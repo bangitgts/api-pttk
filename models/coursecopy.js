@@ -11,7 +11,7 @@ const AccountSchema = new Schema({
     amount: String,
     isCheck: String
 }, {
-    collection: "course",
+    collection: "coursecopy",
 });
-const CourseModel = mongoose.model("course", AccountSchema);
-module.exports = CourseModel;
+const CourseCopyModel = mongoose.model("coursecopy", AccountSchema);
+module.exports = CourseCopyModel;

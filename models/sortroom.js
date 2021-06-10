@@ -5,13 +5,11 @@ mongoose.connect("mongodb://localhost/PTTK", {
 });
 const Schema = mongoose.Schema;
 const AccountSchema = new Schema({
-    nameCourse: String,
-    schedule: String,
-    during: String,
-    amount: String,
-    isCheck: String
+    room20: Array,
+    room30: Array,
+    room40: Array
 }, {
-    collection: "course",
+    collection: "sortroom",
 });
-const CourseModel = mongoose.model("course", AccountSchema);
-module.exports = CourseModel;
+const sortRoomModel = mongoose.model("sortroom", AccountSchema);
+module.exports = sortRoomModel;
